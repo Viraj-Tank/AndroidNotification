@@ -1,11 +1,21 @@
 package com.novuspax.androidnotification
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.novuspax.androidnotification.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val binding :ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+        binding.btnShow.setOnClickListener {
+            CounterNotificationService(this@MainActivity).showNotification(Counter.value)
+        }
     }
 }
